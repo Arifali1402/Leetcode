@@ -1,4 +1,39 @@
 class Solution {
+    // Space Optimization
+    public int maxProfit(int[] prices) {
+        int n = prices.length;
+        int prev[] = new int[2];
+        int curr[] = new int[2];
+        // Base cases
+        prev[0] = 0;        
+        prev[1] = 0;
+        
+        // Here dp[index+1] will be prev because of the bottom up approach
+        for(int index = n-1;index>=0;index--){
+            for(int buy = 0;buy<=1;buy++){
+                int profit = 0;
+                // When I can buy the stocks
+                if(buy == 1){
+                    int take = -prices[index] + prev[0];
+                    int notTake = 0 + prev[1];
+                    profit = Math.max(take, notTake);
+                }
+                // When I have to sell the stocks
+                else{
+                    int sell = prices[index] + prev[1];
+                    int notSell = 0 + prev[0];
+                    profit = Math.max(sell, notSell);
+                }
+                curr[buy] = profit;
+            }
+            prev = curr.clone();
+        }
+        return prev[1];
+    }
+}
+/*
+class Solution {
+    // Tabulation
     public int maxProfit(int[] prices) {
         int n = prices.length;
         int dp[][] = new int[n+1][2];
@@ -27,7 +62,7 @@ class Solution {
         return dp[0][1];
     }
 }
-/*
+
 Memoization
 class Solution {
     private int helper(int index, int buy, int prices[], int dp[][]){
