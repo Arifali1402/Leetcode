@@ -1,4 +1,45 @@
 class Solution {
+    public int maxProfit(int[] prices) {
+        int n = prices.length;
+        int dp[][][] = new int[n+1][2][3];
+        // Base conditions
+        for(int idx = 0;idx<n;idx++){
+            for(int buy = 0;buy<2;buy++){
+                dp[idx][buy][0] = 0;
+            }
+        }
+        for(int buy = 0;buy<2;buy++){
+            for(int capacity = 0;capacity<3;capacity++){
+                dp[n][buy][capacity] = 0;
+            }
+        }
+        // idx == n  is in base condition
+        for(int idx = n-1; idx>=0;idx--){
+            for(int buy = 0;buy<2;buy++){
+                // capacity == 0 is in base condition
+                for(int capacity = 1;capacity<3;capacity++){
+                    int profit = 0;
+                    if(buy == 1){
+                        int take = -prices[idx] + dp[idx+1][0][capacity];
+                        int notTake = 0 + dp[idx+1][1][capacity];
+                        profit = Math.max(take, notTake);
+                    }
+                    else{
+                        int sell = prices[idx] + dp[idx+1][1][capacity-1];
+                        int notSell = 0 + dp[idx+1][0][capacity];
+                        profit = Math.max(sell, notSell);
+                    }
+                    // Return the profit
+                    dp[idx][buy][capacity] = profit;
+                }
+            }
+        }
+        return dp[0][1][2];
+    }
+}
+/*
+MEMOIZATION
+class Solution {
     private int helper(int idx, int buy, int capacity, int[] prices, int dp[][][]){
         // Base Cases
         if(capacity == 0){
@@ -35,3 +76,4 @@ class Solution {
         return helper(0, 1, 2, prices, dp);
     }
 }
+*/
