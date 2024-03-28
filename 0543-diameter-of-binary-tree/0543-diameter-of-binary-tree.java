@@ -13,6 +13,24 @@
  *     }
  * }
  */
+// The previous solution is better but this one gives you a better time complexity
+class Solution {
+    private int height(TreeNode root, int dia[]){
+        if(root == null){
+            return 0;
+        }
+        int lh = height(root.left, dia);
+        int rh = height(root.right, dia);
+        dia[0] = Math.max(dia[0], lh+rh);
+        return Math.max(lh,rh)+1;
+    }
+    public int diameterOfBinaryTree(TreeNode root) {
+        int diameter[] = new int[1];
+        int x = height(root, diameter);
+        return diameter[0];
+    }
+}
+/*
 class Solution {
     private int height(TreeNode root){
         if(root == null){
@@ -38,3 +56,4 @@ class Solution {
         return diameter(root);
     }
 }
+*/
