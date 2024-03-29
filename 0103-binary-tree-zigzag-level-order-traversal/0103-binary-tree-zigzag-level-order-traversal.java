@@ -26,28 +26,40 @@ class Solution {
             int size = queue.size();
             List<Integer> list = new LinkedList<>();
             Integer arr[] = new Integer[size];
-            if(leftToRight){
-                for(int i = 0;i<size;i++){
-                    TreeNode curr = queue.poll();
-                    arr[i] = curr.val;
-                    if(curr.left != null){
-                        queue.offer(curr.left);
-                    }
-                    if(curr.right != null){
-                        queue.offer(curr.right);
-                    }
+            // if(leftToRight){
+            //     for(int i = 0;i<size;i++){
+            //         TreeNode curr = queue.poll();
+            //         arr[i] = curr.val;
+            //         if(curr.left != null){
+            //             queue.offer(curr.left);
+            //         }
+            //         if(curr.right != null){
+            //             queue.offer(curr.right);
+            //         }
+            //     }
+            // }
+            // else{
+            //     for(int i = size-1;i>=0;i--){
+            //         TreeNode curr = queue.poll();
+            //         arr[i] = curr.val;
+            //         if(curr.left != null){
+            //             queue.offer(curr.left);
+            //         }
+            //         if(curr.right != null){
+            //             queue.offer(curr.right);
+            //         }
+            //     }
+            // }
+            
+            for(int i = 0;i<size;i++){
+                TreeNode curr = queue.poll();
+                int idx = (leftToRight)?i:size-i-1;
+                arr[idx] = curr.val;
+                if(curr.left != null){
+                    queue.offer(curr.left);
                 }
-            }
-            else{
-                for(int i = size-1;i>=0;i--){
-                    TreeNode curr = queue.poll();
-                    arr[i] = curr.val;
-                    if(curr.left != null){
-                        queue.offer(curr.left);
-                    }
-                    if(curr.right != null){
-                        queue.offer(curr.right);
-                    }
+                if(curr.right != null){
+                    queue.offer(curr.right);
                 }
             }
             leftToRight = !leftToRight;
