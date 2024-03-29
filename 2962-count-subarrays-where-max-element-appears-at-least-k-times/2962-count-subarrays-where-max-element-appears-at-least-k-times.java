@@ -9,13 +9,18 @@ class Solution {
         }
         for(int right = 0;right<nums.length;right++){
             if(nums[right] == maxi) count++;
-            while((count > k) || (left <= right && count == k && nums[left] != maxi)){
+            while(count == k){
                 if(nums[left] == maxi) count--;
                 left++;              
             }
-            if(count == k){
-                ans += left + 1;
-            }
+            ans += left;
+            // while((count > k) || (left <= right && count == k && nums[left] != maxi)){
+            //     if(nums[left] == maxi) count--;
+            //     left++;              
+            // }
+            // if(count == k){
+            //     ans += left + 1;
+            // }
         }
         return ans;
     }
