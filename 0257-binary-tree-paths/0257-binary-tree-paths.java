@@ -29,7 +29,7 @@ class Solution {
         return;
     }
     public List<String> binaryTreePaths(TreeNode root) {
-        List<String> list = new ArrayList<>();
+        List<String> list = new LinkedList<>();
         if(root == null){
             return list;
         }
