@@ -13,6 +13,8 @@
  *     }
  * }
  */
+// Time Complexity -> O(log(n)^2) which is less than O(N).
+// Space Complexity -> O(log(n)).
 class Solution {
     private int leftHeight(TreeNode root){
         int count = 0;
