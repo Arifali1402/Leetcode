@@ -14,7 +14,7 @@
  * }
  */
 class Solution {
-    // Recursive Solution
+    // // Recursive Solution
     // TreeNode prev = null;
     // public void flatten(TreeNode root) {
     //     if(root == null) return;
@@ -24,37 +24,43 @@ class Solution {
     //     root.left = null;
     //     prev = root;
     // }
-    // Iterative Solution
-    // public void flatten(TreeNode root) {
-    //     Stack<TreeNode> stack = new Stack<>();
-    //     stack.push(root);
-    //     while(!stack.isEmpty()){
-    //         TreeNode curr = stack.peek();
-    //         stack.pop();
-    //         if(curr.right != null) stack.push(curr.right);
-    //         if(curr.left != null) stack.push(curr.left);
-    //         if(!stack.isEmpty()){
-    //             curr.right = stack.peek();                
-    //         }
-    //         curr.left = null;
-    //     }
-    // }
-    // Morris Solution
+    
+    
+    // // Iterative Solution
     public void flatten(TreeNode root) {
-        TreeNode curr = root;
-        while(curr != null){
-            if(curr.left != null){
-                TreeNode prev = curr.left;
-                while(prev.right != null){
-                    prev = prev.right;
-                }
-                prev.right = curr.right;
-                curr.right = curr.left;
-                curr.left = null;
+        if(root == null){
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            TreeNode curr = stack.peek();
+            stack.pop();
+            if(curr.right != null) stack.push(curr.right);
+            if(curr.left != null) stack.push(curr.left);
+            if(!stack.isEmpty()){
+                curr.right = stack.peek();                
             }
-            curr = curr.right;
+            
+            curr.left = null;
         }
     }
     
     
+    // // Morris Solution
+    // public void flatten(TreeNode root) {
+    //     TreeNode curr = root;
+    //     while(curr != null){
+    //         if(curr.left != null){
+    //             TreeNode prev = curr.left;
+    //             while(prev.right != null){
+    //                 prev = prev.right;
+    //             }
+    //             prev.right = curr.right;
+    //             curr.right = curr.left;
+    //             curr.left = null;
+    //         }
+    //         curr = curr.right;
+    //     }
+    // }   
 }
