@@ -22,19 +22,33 @@ class Solution {
         if(root.left == null){
             return root.right;
         }
-        // To connect left with right side of the deleted node
-        TreeNode rightChild = root.right;
-        TreeNode rightMost = findRight(root.left);
-        rightMost.right = rightChild;
-        return root.left;
+        // // To connect left with right side of the deleted node
+        // TreeNode rightChild = root.right;
+        // TreeNode rightMost = findRight(root.left);
+        // rightMost.right = rightChild;
+        // return root.left;
+        
+        // To connect right with left side of the deleted node
+        TreeNode leftChild = root.left;
+        TreeNode leftMost = findLeft(root.right);
+        leftMost.left = leftChild;
+        return root.right;
     }
     
-    // To find the rightmost element in a given tree/subtree
+    // To find the rightmost element at the left side of a given tree/subtree
     private TreeNode findRight(TreeNode root){
         if(root.right == null){
             return root;
         }
         return findRight(root.right);
+    }
+    
+    // To find the leftmost element at the right side of a given tree/subtree
+    private TreeNode findLeft(TreeNode root){
+        if(root.left == null){
+            return root;
+        }
+        return findLeft(root.left);
     }
     
     public TreeNode deleteNode(TreeNode root, int key) {
@@ -67,4 +81,5 @@ class Solution {
         }
         return root;
     }
+        
 }
