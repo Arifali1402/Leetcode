@@ -18,6 +18,7 @@ class Solution {
         if(root == null){
             return true;
         }
+        // If it is inside the boundary, then we can procees else return false
         if(root.val > left && root.val < right){
             return validate(root.left, left, root.val) && validate(root.right, root.val, right);
         }
