@@ -27,6 +27,7 @@ class Solution {
                 return false;
             }
         }
+        // Mini should be zero in order to make the string valid
         return mini == 0;
     }
 }
