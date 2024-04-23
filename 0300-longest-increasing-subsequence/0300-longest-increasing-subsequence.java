@@ -2,10 +2,13 @@ class Solution {
     // Using Binary Search
     public int lengthOfLIS(int[] nums) {
         List<Integer> list = new ArrayList<>();
+        int len = 0;
         list.add(nums[0]);
+        len++;
         for(int i=1;i<nums.length;i++){
             if(nums[i] > list.get(list.size()-1)){
                 list.add(nums[i]);
+                len++;
             }
             else{
                 int idx = Collections.binarySearch(list, nums[i]);
@@ -28,7 +31,8 @@ class Solution {
         //         list.set(idx, num); // Replace the element at the insertion point
         //     }
         // }
-        return list.size();
+        // return list.size();
+        return len;
     }
 }
 /*
