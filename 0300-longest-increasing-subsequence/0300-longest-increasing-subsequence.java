@@ -2,32 +2,32 @@ class Solution {
     // Using Binary Search
     public int lengthOfLIS(int[] nums) {
         List<Integer> list = new ArrayList<>();
-        // list.add(nums[0]);
-        // for(int i=1;i<nums.length;i++){
-        //     if(nums[i] > list.get(list.size()-1)){
-        //         list.add(nums[i]);
+        list.add(nums[0]);
+        for(int i=1;i<nums.length;i++){
+            if(nums[i] > list.get(list.size()-1)){
+                list.add(nums[i]);
+            }
+            else{
+                int idx = Collections.binarySearch(list, nums[i]);
+                if(idx < 0){
+                    list.set(-idx-1,nums[i]);
+                }
+                else{
+                    list.set(idx,nums[i]);
+                }
+          }
+        }  
+        // for (int num : nums) {
+        //     int idx = Collections.binarySearch(list, num);
+        //     if (idx < 0) {
+        //         idx = -idx - 1; // Calculate the correct insertion point
         //     }
-        //     else{
-        //         int idx = Collections.binarySearch(list, nums[i]);
-        //         if(idx == -1){
-        //             list.set(0,nums[i]);
-        //         }
-        //         else{
-        //             list.set(idx,nums[i]);
-        //         }
+        //     if (idx == list.size()) {
+        //         list.add(num); // Append to the list if it's the largest element
+        //     } else {
+        //         list.set(idx, num); // Replace the element at the insertion point
         //     }
         // }
-        for (int num : nums) {
-            int idx = Collections.binarySearch(list, num);
-            if (idx < 0) {
-                idx = -idx - 1; // Calculate the correct insertion point
-            }
-            if (idx == list.size()) {
-                list.add(num); // Append to the list if it's the largest element
-            } else {
-                list.set(idx, num); // Replace the element at the insertion point
-            }
-        }
         return list.size();
     }
 }
