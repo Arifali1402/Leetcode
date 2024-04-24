@@ -1,18 +1,42 @@
 class Solution {
     // Optimized Tabulation
     public int lengthOfLIS(int[] nums) {
+        
         int n = nums.length;
+        
         int dp[] = new int[n];
+        int hash[] = new int[n];
+        
+        int lastIndex = 0;
+        
         Arrays.fill(dp, 1);
-        int maxi = Integer.MIN_VALUE;
+        
+        int maxi = 1;
+        
         for(int idx = 0;idx<n;idx++){
+            hash[idx] = idx;
             for(int prev = 0;prev<idx;prev++){
-                if(nums[prev] < nums[idx]){
-                    dp[idx] = Math.max(dp[idx], 1 +dp[prev]);
+                if(nums[prev] < nums[idx] && dp[idx] < 1 + dp[prev]){
+                    dp[idx] = 1 + dp[idx];
+                    hash[idx] = prev;
                 }
             }
-            maxi = Math.max(maxi, dp[idx]);
+            if(dp[idx] > maxi){
+                maxi = dp[idx];
+                lastIndex = idx;
+            }
         }
+        List<Integer> list = new ArrayList<>();
+        list.add(nums[lastIndex]);
+        
+        while(hash[lastIndex] != lastIndex){
+            lastIndex = hash[lastIndex];
+            list.add(nums[lastIndex]);
+        }
+        // Now this will print the LIS in reverse order
+        
+        Collections.reverse(list); // this will print the LIS
+        
         return maxi;
     }
 }
