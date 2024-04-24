@@ -35,9 +35,10 @@ class Solution {
             lastIndex = hash[lastIndex];
             list.add(nums[lastIndex]);
         }
-        // Now this will print the LIS in reverse order
+        // Now this will print the list in reverse order
         
-        return list; // this will print the LIS
+        Collections.reverse(list);
+        return list; // this will print the list in correct order
     }
 }
 /*
