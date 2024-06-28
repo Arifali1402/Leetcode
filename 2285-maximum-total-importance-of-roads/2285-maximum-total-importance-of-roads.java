@@ -1,4 +1,6 @@
 class Solution {
+    // The main idea is to multiply the nodes' priority with the number of edges the node is connected with.
+    // The priority is based on the number of edges the node is connected with.
     public long maximumImportance(int n, int[][] roads) {
         long ans = 0;
         long edgeCount[] = new long[n];
