@@ -17,6 +17,6 @@ class Solution {
             ans = (ans + newArr[left-1]);
             left++;
         }
-        return (int)((double)ans%(1e9+7));
+        return (int)(ans%(1e9+7));
     }
 }
