@@ -1,5 +1,32 @@
 class Solution {
     public int minimumPushes(String word) {
+        int freq[] = new int[26];
+        for(char ch: word.toCharArray()){
+            freq[ch-'a']++;
+        }
+        // Arrays.sort(freq, Collections.reverseOrder());
+        Arrays.sort(freq);
+        int count = 0;
+        int j = 1;
+        int alphabets = 0;
+        
+        for(int k = freq.length - 1;k>=0;k--){
+            if(freq[k] == 0){
+                break;
+            }
+            if(alphabets >= 8){
+                j++;
+                alphabets = 0;
+            }
+            alphabets++;
+            count = count+(j*freq[k]);            
+        }
+        return count;
+    }
+}
+/*
+class Solution {
+    public int minimumPushes(String word) {
         int count = 0;
         // 8 alphabets
         Map<Character, Integer> map = new TreeMap<>();
@@ -26,3 +53,4 @@ class Solution {
         return count;
     }
 }
+*/
